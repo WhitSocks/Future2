@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Picture Gallery</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .picture-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      color: aliceblue;
+    }
+    .exit-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: transparent;
+      color: aliceblue;
+      border: none;
+      cursor: pointer;
+      font-size: 30px;
+    }
+    .picture {
+      margin: 10px;
+      cursor: pointer;
+      color:white;
+    }
+    
+    .picture img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 500;
+      color: aliceblue;
+      overflow: auto;
+    }
+    
+    .modal-content {
+      display: flex;
+      flex-direction: row; /* Updated to row */
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    
+    .modal img {
+      max-width: 50%; /* Adjust width */
+      max-height: 80%;
+      object-fit: contain;
+    }
+    
+    .story {
+      margin-left: 20px; /* Added margin */
+      text-align: left; /* Align text left */
+      color: beige;
+      font-style: oblique;
+      font-size: 34px;
+      background-color: orangered
+      
+    }
+    @media only screen and (max-width: 768px) {
+      .story {
+        font-size: 0.8em; /* Increase font size for mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+    <h1>To my Future Wife</h1>
+</header>
+
+<section class="picture-section">
+  <div class="picture-container">
+    <div class="gallery">
+      <div class="picture" onclick="openModal('IMG_20240113_113844.jpg', 'In die foto \n\t kan ek presies se wanneer ek geweet het dat ek lief is vir jou.Dankie Dat jy is wie jy is ek kon nie vir beter vrae nie.')">
+        <img  src="IMG_20240113_113844.jpg" alt="">
+      </div>
+      <div  onclick="openModal('jana2.jpg', 'Ek onthou ek was klaar verlief teen die tyd maar toe stuur jy die foto en toe kon ek nie help maar meer verlief word nie, daai oe, daai smile dit het my wereld geword')">
+        <img src="jana2.jpg" alt="Picture 2">
+      </div>
+      <div  onclick="openModal('jana3.jpg', 'Wens ek kon al daar wees vir die. Weereens lyk jy te oulik dink net hoe ek mos voel dat ek nie by jou kon wees nie al het ons nie uit gegaan op daai oomlik nie.')">
+        <img src="jana3.jpg" alt="Picture 3">
+      </div>
+      <div  onclick="openModal('janaenmarcel.jpg', 'Wat kan ek s&ecirc; beste dag ooit, Maar ek dink die best dag van my lewe sal wees wanneer ek trou met jou')">
+        <img src="janaenmarcel.jpg" alt="Picture 3">
+      </div>
+      <div  onclick="openModal('marcelenjana.jpg', 'Wat kan ek se, die was n naweek waar albei van ons geweet het hoe ons voel maar niks gedoen het nie maar soos hulle se Die HERE se tyd nie ons sin nie.')">
+        <img src="marcelenjana.jpg" alt="Picture 3">
+      </div>
+      <div  onclick="openModal('welldamn.jpg', 'Soos n engel')">
+        <img src="welldamn.jpg" alt="Picture 3">
+      </div>
+      <div  onclick="openModal('sillyjana.jpg', 'Ek love dit wanner jy silly is en hyper.')">
+        <img src="sillyjana.jpg" alt="Picture 3">
+      </div>
+      <div  onclick="openModal('Jana_Hoodie.jpg', 'Ek het jou gat geskop in daai skaak match')">
+        <img src="Jana_Hoodie.jpg" alt="Picture 3">
+      </div>
+      <div  onclick="openModal('MalMarcel.jpg', 'Dag 3 van ons story sad maar opgewonded want ek het jou by my kant reg om als aan te vat wat gegooi word na ons toe.')">
+        <img src="MalMarcel.jpg" alt="Picture 3">
+      </div>
+      <div  onclick="openModal('SexyJana.jpg', 'Ek gaan dit weer se Damn jy is sexy !!!!!!')">
+        <img src="SexyJana.jpg" alt="Picture 3">
+      </div>
+      <div  onclick="openModal('Lekker.jpg', 'Ek weet nie van jou nie maar ek het tuis gevoel met jou langs my, my hart was rustig en peacefull')">
+        <img src="Lekker.jpg" alt="Picture 3">
+      </div>
+      <div  onclick="openModal('Eersteaand.jpg', 'Hoe kon ek vergeet die aand toe ek soos daai brandy en coke voel ')">
+        <img src="Eersteaand.jpg" alt="Picture 3">
+      </div>
+      <div  onclick="openModal('CuteJana.jpg', 'Ek kyk na die foto en dink hoe kry jy dit reg om my nog meer verlief te maak like damn ')">
+        <img src="CuteJana.jpg" alt="Picture 3">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <button class="exit-button" onclick="closeModal()">X</button>
+    <img id="modal-image" src="" alt="">
+    <div id="modal-story" class="story"></div>
+  </div>
+</div>
+
+<footer>
+</footer>
+<script>
+  function openModal(imageSrc, story) {
+    var modal = document.getElementById('modal');
+    var modalImage = document.getElementById('modal-image');
+    var modalStory = document.getElementById('modal-story');
+
+    modalImage.src = imageSrc;
+    modalStory.textContent = story;
+
+    modal.style.display = 'flex';
+  }
+
+  function closeModal() {
+    var modal = document.getElementById('modal');
+    modal.style.display = 'none';
+  }
+
+  window.onclick = function(event) {
+    var modal = document.getElementById('modal');
+    if (event.target == modal) {
+      closeModal();
+    }
+  };
+</script>
+</body>
+</html>
